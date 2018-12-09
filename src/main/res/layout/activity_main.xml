@@ -7,6 +7,73 @@
     android:background="@color/colorBackground"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="261dp"
+        android:layout_height="99dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginEnd="62dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <Button
+            android:id="@+id/btn_Relever"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Relever" />
+
+        <Button
+            android:id="@+id/btn_Param"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Paramètres ..." />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="371dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="337dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="14dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/btn_Jour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Jour" />
+
+        <Button
+            android:id="@+id/btn_Semaine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Semaine" />
+
+        <Button
+            android:id="@+id/btn_Mois"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mois" />
+
+        <Button
+            android:id="@+id/btn_Perso"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="..." />
+    </LinearLayout>
+
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="75dp"
@@ -42,15 +109,17 @@
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="298dp"
-        android:layout_height="267dp"
+        android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="7dp"
+        android:layout_marginBottom="35dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.jjoe64.graphview.GraphView
+            android:id="@+id/graph"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:id="@+id/graph" />
+            android:layout_height="400dp" />
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
