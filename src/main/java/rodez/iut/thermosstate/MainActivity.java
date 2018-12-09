@@ -15,7 +15,8 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    //format heure
+    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,15 +31,29 @@ public class MainActivity extends AppCompatActivity {
         //création de points
         series.setDrawDataPoints(true);
 
-    }
+        //affichage du nombre d'éléments sur l'axe des abscisses
+        //graph.getGridLabelRenderer().setNumHorizontalLabels(10);
+
+        //permet de gérer les valeurs de l'axe des abscisses
+        graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
+            @Override
+            public String formatLabel(double value, boolean isValueX) {
+                if (isValueX) {
+                    return sdf.format(new Date((long) value));
+                } else {
+                    return super.formatLabel(value, isValueX);
+                }
+            }
+        });
+    };
 
 
     private DataPoint[] getDataPoint() {
 
         DataPoint[] dp= new DataPoint[]{
-                new DataPoint(0, 5),
-                new DataPoint(1, 9),
-                new DataPoint(2, 14),
+                new DataPoint(new Date().getTime(), 5),
+                new DataPoint(new Date().getTime(), 9),
+                new DataPoint(new Date().getTime(), 14),
         };
         return (dp);
     }
