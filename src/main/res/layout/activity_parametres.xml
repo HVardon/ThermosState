@@ -73,7 +73,6 @@
         android:layout_marginStart="66dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="23dp"
-        android:entries="@array/valeur_SecMin"
         app:layout_constraintEnd_toStartOf="@+id/spinnerValType"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
