@@ -80,7 +80,7 @@
 
     <Spinner
         android:id="@+id/spinnerValType"
-        android:layout_width="127dp"
+        android:layout_width="146dp"
         android:layout_height="34dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="65dp"
