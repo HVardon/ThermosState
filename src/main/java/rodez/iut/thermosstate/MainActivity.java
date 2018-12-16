@@ -7,20 +7,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Calendar;
+
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import static rodez.iut.thermosstate.LectureFichier.lignesFichier;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    //format heure
-    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+    //format horaire
+    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 
     private Button parametres;
 
@@ -57,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //permet de gérer les valeurs de l'axe des abscisses
-        /*graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
+        graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
             @Override
             public String formatLabel(double value, boolean isValueX) {
                 if (isValueX) {
@@ -66,7 +71,13 @@ public class MainActivity extends AppCompatActivity {
                     return super.formatLabel(value, isValueX);
                 }
             }
-        });*/
+        });
+
+        try {
+            InputStream is = getAssets().open("Temperature.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         // permet de zoomer et de scroller horizontalement
         graph.getViewport().setScalable(true);
@@ -77,11 +88,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         DataPoint[] dp= new DataPoint[]{
-                new DataPoint(1, -4),
-                new DataPoint(2, 9),
-                new DataPoint(5, 14),
-                new DataPoint(9, 14),
-                new DataPoint(10, 7),
+                new DataPoint(new Date().getTime(),-5),
+                new DataPoint(new Date().getTime(), lignesFichier("Temperature")),
+                new DataPoint(new Date().getTime(), 9),
+
         };
         return (dp);
     }
