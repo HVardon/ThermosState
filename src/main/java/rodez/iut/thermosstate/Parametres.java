@@ -1,5 +1,7 @@
 package rodez.iut.thermosstate;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import android.widget.Spinner;
 
 public class Parametres extends AppCompatActivity {
     Spinner spinnerVal, spinnerValType; // liste déroulante pour valeurs et type de valeurs
+    private Button boutonReinit;
 
     private Button retour;
     // intent pour accéder à l'accueil
@@ -23,6 +26,15 @@ public class Parametres extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parametres);
+
+        boutonReinit = findViewById(R.id.btn_ReinitGraphe);
+
+        boutonReinit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showAlert();
+            }
+        });
 
         spinnerVal = (Spinner) findViewById(R.id.spinnerVal);
         spinnerValType = (Spinner) findViewById(R.id.spinnerValType);
@@ -59,4 +71,22 @@ public class Parametres extends AppCompatActivity {
         });
     }
 
+    public void showAlert() {
+        new AlertDialog.Builder(this)
+                .setTitle("Réinitialisation")
+                .setMessage("Voulez-vous vraiment supprimer tout les relevés de l'application ?")
+                .setPositiveButton("Oui", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int afaire) {
+                        //suppression des données
+                    }
+
+                })
+                .setNegativeButton("Non", null)
+                .show();
+    }
+
+
 }
+

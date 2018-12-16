@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ThermosStats</string>
+    <string name="app_name">ThermoCheck</string>
     <string name="fichier">Temperature.txt</string>
 
     <string-array name="valeur_type">
