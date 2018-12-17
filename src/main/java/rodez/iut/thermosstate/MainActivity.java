@@ -85,18 +85,18 @@ public class MainActivity extends AppCompatActivity {
 
                         break;
                     case 1: // second bouton
-                        temperatureA = (-5) + 273.15;
-                        temperatureB = (4) + 273.15;
-                        temperatureC = (9) + 273.15;
-                        temperatureD = (50) + 273.15;
-                        init();
-
-                        break;
-                    case 2:  // troisième bouton
                         temperatureA = (-5 * 1.3) + 32;
                         temperatureB = (4 * 1.3) + 32;
                         temperatureC = (9 * 1.3) + 32;
                         temperatureD = (50 * 1.3) + 32;
+                        init();
+
+                        break;
+                    case 2:  // troisième bouton
+                        temperatureA = (-5) + 273.15;
+                        temperatureB = (4) + 273.15;
+                        temperatureC = (9) + 273.15;
+                        temperatureD = (50) + 273.15;
                         init();
                 }
             }
