@@ -32,7 +32,7 @@
     <Button
         android:id="@+id/btn_Retour"
         android:layout_width="225dp"
-        android:layout_height="0dp"
+        android:layout_height="47dp"
         android:layout_marginBottom="31dp"
         android:text="Retour"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -53,7 +53,7 @@
     <Button
         android:id="@+id/btn_ReinitGraphe"
         android:layout_width="227dp"
-        android:layout_height="0dp"
+        android:layout_height="49dp"
         android:layout_marginBottom="22dp"
         android:text="Réinitialiser graphique"
         app:layout_constraintBottom_toTopOf="@+id/btn_Retour"
@@ -76,12 +76,10 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="107dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="17dp"
+        android:layout_height="28dp"
         android:text="Paramètres"
         android:textColor="@color/colorText"
         android:textSize="38px"
-        app:layout_constraintBottom_toTopOf="@+id/cb_ReleveAuto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

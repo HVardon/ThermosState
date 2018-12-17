@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
@@ -26,7 +28,13 @@ public class MainActivity extends AppCompatActivity {
     private Button semaine;
     private Button mois;
 
+    double temperatureA = -5;
+    double temperatureB = 4;
+    double temperatureC = 9;
+    double temperatureD = 50;
+
     GraphView graph;
+    LineGraphSeries<DataPoint> series;
 
     // intent pour accéder à l'activity Paramètres
     public void openParametres(){
@@ -48,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         //Bouton jour qui permet l'affichage des horaires
         jour = findViewById(R.id.btn_Jour);
         //Bouton semaine qui permet l'affichage des dates
@@ -58,6 +65,42 @@ public class MainActivity extends AppCompatActivity {
 
         sdf = new SimpleDateFormat("dd/MM/yy");
         init();
+
+        final RadioGroup radioGroup = findViewById(R.id.radioGroup);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                View radioButton = radioGroup.findViewById(checkedId);
+                int index = radioGroup.indexOfChild(radioButton);
+
+                switch (index) {
+                    case 0: // premier bouton
+                        temperatureA = -5;
+                        temperatureB = 4;
+                        temperatureC = 9;
+                        temperatureD = 50;
+                        init();
+
+                        break;
+                    case 1: // second bouton
+                        temperatureA = (-5) + 273.15;
+                        temperatureB = (4) + 273.15;
+                        temperatureC = (9) + 273.15;
+                        temperatureD = (50) + 273.15;
+                        init();
+
+                        break;
+                    case 2:  // troisième bouton
+                        temperatureA = (-5 * 1.3) + 32;
+                        temperatureB = (4 * 1.3) + 32;
+                        temperatureC = (9 * 1.3) + 32;
+                        temperatureD = (50 * 1.3) + 32;
+                        init();
+                }
+            }
+        });
 
         jour.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,14 +134,13 @@ public class MainActivity extends AppCompatActivity {
                 graph.getViewport().setMaxX(new Date(2018,11,25,0,1,1).getTime());
             }
         });
+    }
 
-
-    };
-
-    private void init(){
+    private void init() {
         graph = (GraphView) findViewById(R.id.graph);
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(getDataPoint());
-        graph.addSeries(series);
+        series = new LineGraphSeries<>(getDataPoint());
+            graph.removeAllSeries();
+            graph.addSeries(series);
         //couleurs du tracé
         series.setColor(Color.rgb(255,109,0));
         //création de points
@@ -132,6 +174,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+
     private DataPoint[] getDataPoint() {
 
         Date m= new Date(2018,10,22,14,25,42);
@@ -140,18 +184,15 @@ public class MainActivity extends AppCompatActivity {
         Date c= new Date(2018,11,24,14,25,42);
         Date d= new Date(2018,11,25,0,1,1);
 
-        double temperatureA = -5;
-        double temperatureB = 4;
-        double temperatureC = 9;
-        double temperatureD = 50;
+
 
 
         DataPoint[] dp= new DataPoint[]{
                 new DataPoint(m.getTime(),temperatureA),
                 new DataPoint(a.getTime(),temperatureA),
                 new DataPoint(b.getTime(),temperatureB),
-                new DataPoint(c.getTime(), temperatureC),
-                new DataPoint(d.getTime(), temperatureD),
+                new DataPoint(c.getTime(),temperatureC),
+                new DataPoint(d.getTime(),temperatureD),
 
         };
         return (dp);
