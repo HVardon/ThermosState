@@ -24,7 +24,8 @@
             android:id="@+id/btn_Relever"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Relever" />
+            android:text="Relever"
+            android:onClick="releve"/>
 
         <Button
             android:id="@+id/btn_Param"

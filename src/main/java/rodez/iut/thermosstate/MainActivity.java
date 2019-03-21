@@ -8,11 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -27,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
     private Button jour;
     private Button semaine;
     private Button mois;
+
+    //Client pour demande de données
+    Client cli = new Client();
 
     double temperatureA = -5;
     double temperatureB = 4;
@@ -63,8 +69,20 @@ public class MainActivity extends AppCompatActivity {
         //Bouton mois qui permet l'affichage des dates
         mois = findViewById(R.id.btn_Mois);
 
+        //demande de données
+        try {
+            cli.demanderReleve();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("erreur co mamene");
+        }
+
         sdf = new SimpleDateFormat("dd/MM/yy");
+
+
+
         init();
+
 
         final RadioGroup radioGroup = findViewById(R.id.radioGroup);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -139,8 +157,8 @@ public class MainActivity extends AppCompatActivity {
     private void init() {
         graph = (GraphView) findViewById(R.id.graph);
         series = new LineGraphSeries<>(getDataPoint());
-            graph.removeAllSeries();
-            graph.addSeries(series);
+        graph.removeAllSeries();
+        graph.addSeries(series);
         //couleurs du tracé
         series.setColor(Color.rgb(255,109,0));
         //création de points
@@ -197,4 +215,10 @@ public class MainActivity extends AppCompatActivity {
         };
         return (dp);
     }
+
+    public void releve (View view) throws IOException {
+
+    }
+
+
 }
